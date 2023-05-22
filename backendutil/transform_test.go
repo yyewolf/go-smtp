@@ -11,8 +11,8 @@ import (
 	"testing"
 
 	"github.com/emersion/go-sasl"
-	"github.com/emersion/go-smtp"
-	"github.com/emersion/go-smtp/backendutil"
+	"github.com/yyewolf/go-smtp"
+	"github.com/yyewolf/go-smtp/backendutil"
 )
 
 var _ smtp.Backend = &backendutil.TransformBackend{}

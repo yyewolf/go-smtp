@@ -4,7 +4,7 @@ import (
 	"io"
 
 	"github.com/emersion/go-sasl"
-	"github.com/emersion/go-smtp"
+	"github.com/yyewolf/go-smtp"
 )
 
 // TransformBackend is a backend that transforms messages.
