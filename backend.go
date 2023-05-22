@@ -2,6 +2,8 @@ package smtp
 
 import (
 	"io"
+
+	"github.com/emersion/go-sasl"
 )
 
 var (
@@ -71,6 +73,9 @@ type Session interface {
 
 	// Authenticate the user using SASL PLAIN.
 	AuthPlain(username, password string) error
+
+	// Authenticate the user using SASL OAUTHBEARER
+	AuthOAuthBearer(opts *sasl.OAuthBearerOptions) *sasl.OAuthBearerError
 
 	// Set return path for currently processed message.
 	Mail(from string, opts *MailOptions) error

@@ -12,6 +12,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/emersion/go-sasl"
 	"github.com/emersion/go-smtp"
 )
 
@@ -71,6 +72,10 @@ func (s *session) AuthPlain(username, password string) error {
 	}
 	s.anonymous = false
 	return nil
+}
+
+func (s *session) AuthOAuthBearer(opts *sasl.OAuthBearerOptions) *sasl.OAuthBearerError {
+	return &sasl.OAuthBearerError{Status: "505", Schemes: "OAUTHBEARER", Scope: "Not supported"}
 }
 
 func (s *session) Reset() {

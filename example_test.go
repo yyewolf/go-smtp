@@ -108,6 +108,10 @@ func (s *Session) AuthPlain(username, password string) error {
 	return nil
 }
 
+func (s *Session) AuthOAuthBearer(opts *sasl.OAuthBearerOptions) *sasl.OAuthBearerError {
+	return &sasl.OAuthBearerError{Status: "505", Schemes: "OAUTHBEARER", Scope: "Not supported"}
+}
+
 func (s *Session) Mail(from string, opts *smtp.MailOptions) error {
 	log.Println("Mail from:", from)
 	return nil

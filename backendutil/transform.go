@@ -3,6 +3,7 @@ package backendutil
 import (
 	"io"
 
+	"github.com/emersion/go-sasl"
 	"github.com/emersion/go-smtp"
 )
 
@@ -35,6 +36,10 @@ func (s *transformSession) Reset() {
 
 func (s *transformSession) AuthPlain(username, password string) error {
 	return s.Session.AuthPlain(username, password)
+}
+
+func (s *transformSession) AuthOAuthBearer(opts *sasl.OAuthBearerOptions) *sasl.OAuthBearerError {
+	return s.Session.AuthOAuthBearer(opts)
 }
 
 func (s *transformSession) Mail(from string, opts *smtp.MailOptions) error {

@@ -10,6 +10,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/emersion/go-sasl"
 	"github.com/emersion/go-smtp"
 	"github.com/emersion/go-smtp/backendutil"
 )
@@ -53,6 +54,9 @@ func (s *session) AuthPlain(username, password string) error {
 		return errors.New("Invalid username or password")
 	}
 	s.anonymous = false
+	return nil
+}
+func (s *session) AuthOAuthBearer(opts *sasl.OAuthBearerOptions) *sasl.OAuthBearerError {
 	return nil
 }
 

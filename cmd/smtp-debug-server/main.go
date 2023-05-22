@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/emersion/go-sasl"
 	"github.com/emersion/go-smtp"
 )
 
@@ -24,6 +25,10 @@ func (bkd *backend) NewSession(c *smtp.Conn) (smtp.Session, error) {
 type session struct{}
 
 func (s *session) AuthPlain(username, password string) error {
+	return nil
+}
+
+func (s *session) AuthOAuthBearer(opts *sasl.OAuthBearerOptions) *sasl.OAuthBearerError {
 	return nil
 }
 

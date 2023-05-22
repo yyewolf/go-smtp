@@ -104,6 +104,16 @@ func NewServer(be Backend) *Server {
 					return sess.AuthPlain(username, password)
 				})
 			},
+			sasl.OAuthBearer: func(conn *Conn) sasl.Server {
+				return sasl.NewOAuthBearerServer(func(opts sasl.OAuthBearerOptions) *sasl.OAuthBearerError {
+					sess := conn.Session()
+					if sess == nil {
+						panic("No session when AUTH is called")
+					}
+
+					return sess.AuthOAuthBearer(&opts)
+				})
+			},
 		},
 		conns: make(map[*Conn]struct{}),
 	}
